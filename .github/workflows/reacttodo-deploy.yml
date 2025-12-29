@@ -1,0 +1,32 @@
+name: Deploy React Todo UI (CRA)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Check Node & npm
+        run: |
+          node -v
+          npm -v
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React app
+        run: npm run build
+
+      - name: Deploy to Nginx
+        run: |
+          sudo rm -rf /var/www/reacttodo/*
+          sudo cp -r build/* /var/www/reacttodo/
+          sudo systemctl restart nginx
