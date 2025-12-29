@@ -12,7 +12,7 @@ on:
   #   - main
   #   - features/**
 env:
-    MY_VAR: Hi there! This is running workflow from
+    MY_VAR: Hi there! This workflow running from
     FNAME: Dev
     MNAME: environment
     managedby: Surendra
@@ -28,7 +28,7 @@ jobs:
 
     - name: Print a greeting
       run: |
-       echo $MY_VAR $FNAME $MNAME thanks to $managedby.
+       echo $MY_VAR $FNAME $MNAME thanks to $managedby !.
         # run: echo "Hello World,This is my first workflow from GitHub Actions"
 
     # - name: List files
