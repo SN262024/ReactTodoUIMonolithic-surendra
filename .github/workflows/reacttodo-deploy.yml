@@ -1,4 +1,4 @@
-name: Deploy React Todo UI (CRA)
+name: Deploy React Todo UI 
 
 on:
   push:
