@@ -32,10 +32,10 @@ jobs:
         echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME
         # run: echo "Hello World,This is my first workflow from GitHub Actions"
 
-    - name: List files
-      run: ls -l
+    # - name: List files
+    #   run: ls -l
 
-    - name: Read Readme.md
-      run: cat README.md
+    # - name: Read Readme.md
+    #   run: cat README.md
      
    
