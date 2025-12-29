@@ -24,13 +24,13 @@ jobs:
     name: Hello World
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v6.0.1
+    # - name: Checkout
+    #   uses: actions/checkout@v6.0.1
 
     - name: Print a greeting
       run: |
-        echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
-        run: echo "Hello World,This is my first workflow from GitHub Actions"
+        echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME
+        # run: echo "Hello World,This is my first workflow from GitHub Actions"
 
     - name: List files
       run: ls -l
