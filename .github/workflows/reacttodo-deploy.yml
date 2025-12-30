@@ -1,4 +1,4 @@
-name: Deploy React Todo UI 
+name: Deploy ReactTodoUI 
 
 on:
   push:
