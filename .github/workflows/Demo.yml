@@ -1,12 +1,12 @@
 
 name: Demo workflow
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-    - main
-    - features/**
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#     - main
+#     - features/**
   # pull_request:
   #   branches:
   #   - main
