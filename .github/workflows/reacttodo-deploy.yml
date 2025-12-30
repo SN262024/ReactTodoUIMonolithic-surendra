@@ -20,7 +20,7 @@ jobs:
           curl -s https://deb.nodesource.com/setup_16.x | sudo bash
           sudo apt install nodejs -y
       - name: npm install dependencies
-        run: npm run
+        run: npm install
 
       - name: npm build
         run: npm run build
