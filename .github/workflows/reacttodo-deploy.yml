@@ -18,7 +18,13 @@ jobs:
         uses: actions/setup-node@v6.1.0
         with: 
           node-version:  16.x
-
+          
+      - name: Cache     
+        uses: actions/cache@v5.0.1 
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+         
       - name: Install Dependencies & Build
         run: |
          npm install
@@ -35,8 +41,7 @@ jobs:
         with:
            name: build-${{ GITHUB.RUN_ID }}
            path: ./artifacts 
-         
-         
+      
 
         
 
