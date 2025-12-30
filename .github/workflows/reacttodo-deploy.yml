@@ -29,6 +29,12 @@ jobs:
         with:
           name: build-${{ GITHUB.RUN_ID }}
           path: build
+          
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v7.0.0
+        with:
+           name: build-${{ GITHUB.RUN_ID }}
+           path: ./artifacts 
          
          
 
