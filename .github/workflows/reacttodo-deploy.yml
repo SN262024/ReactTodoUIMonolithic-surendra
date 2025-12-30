@@ -27,6 +27,11 @@ jobs:
 
       - name: npm build
         run: npm run build
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: build-${{ GITHUB.RUN_ID}}
+          path: Build
           
      
         
