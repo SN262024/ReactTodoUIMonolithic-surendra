@@ -8,30 +8,49 @@ on:
 
 jobs:
   deploy:
-    name: Deploy job
+    name: Deploy 
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source code
         uses: actions/checkout@v6.0.1
+      - name: Setup Node.js environment 
+        uses: actions/setup-node@v6.1.0
+        with: 
+          node-version:  16.x
 
-      - name: setup nodejs
+      - name: Install Dependencies & Build
         run: |
-          curl -s https://deb.nodesource.com/setup_16.x | sudo bash
-          sudo apt install nodejs -y
-      - name: npm install dependencies
-        run: npm install
+         npm install
+         npm run build
 
-      - name: list files
-        run: ls
-
-      - name: npm build
-        run: npm run build
-      - name: Upload a Build Artifact
+      - name: Upload a Build Artifact  
         uses: actions/upload-artifact@v6.0.0
         with:
-          name: build-${{ GITHUB.RUN_ID}}
-          path: Build
+          name: build-${{ GITHUB.RUN_ID }}
+          path: build
+         
+         
+
+        
+
+      # - name: setup nodejs
+      #   run: |
+      #     curl -s https://deb.nodesource.com/setup_16.x | sudo bash
+      #     sudo apt install nodejs -y
+      # - name: npm install dependencies
+      #   run: npm install
+
+      # - name: list files
+      #   run: ls
+
+      # - name: npm build
+      #   run: npm run build
+      # - name: Upload a Build Artifact
+      #   uses: actions/upload-artifact@v6.0.0
+      #   with:
+      #     name: build-${{ GITHUB.RUN_ID}}
+      #     path: Build
           
      
         
