@@ -42,9 +42,6 @@ jobs:
            name: build-${{ GITHUB.RUN_ID }}
            path: ./artifacts 
       
-
-        
-
       # - name: setup nodejs
       #   run: |
       #     curl -s https://deb.nodesource.com/setup_16.x | sudo bash
