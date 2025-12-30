@@ -15,12 +15,15 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v6.0.1
 
-      - name: setupnodejs
+      - name: setup nodejs
         run: |
           curl -s https://deb.nodesource.com/setup_16.x | sudo bash
           sudo apt install nodejs -y
       - name: npm install dependencies
         run: npm install
+
+      - name: list files
+        run: ls
 
       - name: npm build
         run: npm run build
