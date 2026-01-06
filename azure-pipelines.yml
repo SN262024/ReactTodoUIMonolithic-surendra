@@ -1,7 +1,7 @@
 trigger:
-- develop
+- main
 
-pool: Default
+pool: ubuntu-latest
 
 variables:
 - group: sonar-creds
