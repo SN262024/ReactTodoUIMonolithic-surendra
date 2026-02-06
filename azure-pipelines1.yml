@@ -1,0 +1,69 @@
+name: ReactTodo Pipeline
+
+trigger: none
+pool: Simple
+
+# CI Pipeline
+stages: 
+- stage: build
+  displayName: Build
+  jobs:
+  - job: InstallDependencyandBuildArtifacts
+    displayName: Install dependency and Build artifacts
+    steps:
+    - task: PowerShell@2
+      displayName: Install dependency
+      inputs:
+        targetType: 'inline'
+        script: 'npm install'
+
+    - task: PowerShell@2
+      displayName: Build artifacts
+      inputs:
+        targetType: 'inline'
+        script: 'npm run build'
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Artifacts
+      inputs:
+        targetPath: '$(System.DefaultWorkingDirectory)/build'
+        artifact: 'Todo-reactUI-artifacts'
+        publishLocation: 'pipeline'
+
+#CD Pipeline
+- stage: DeployToVM
+  displayName: Deploy to VM
+  jobs:
+  - job: Deploytovm
+    displayName: Deploy To VM
+    steps:
+    - task: DownloadPipelineArtifact@2
+      displayName: Download Artifacts on VM Agent
+      inputs:
+        buildType: 'specific'
+        project: '96d8df8a-cf44-4533-aafb-b7c84ee25b06'
+        definition: '19'
+        buildVersionToDownload: 'specific'
+        pipelineId: '149'
+        artifactName: 'Todo-reactUI-artifacts'
+        targetPath: '$(Pipeline.Workspace)\Todo-reactUI-artifacts'
+
+    
+    - task: CopyFilesOverSSH@0
+      displayName: Copy File over ssh
+      inputs:
+        sshEndpoint: 'ssh to vm1'
+        sourceFolder: '$(Pipeline.Workspace)\Todo-reactUI-artifacts'
+        contents: '**'
+        targetFolder: '/home/vm1/Todo-reactUI-artifacts'
+        readyTimeout: '20000'
+
+    - task: SSH@0
+      displayName: Deploy to /var/www/html
+      inputs:
+        sshEndpoint: 'ssh to vm1'
+        runOptions: 'inline'
+        inline: 'sudo cp -r /home/vm1/Todo-reactUI-artifacts/* /var/www/html'
+        readyTimeout: '20000'
+
+        
