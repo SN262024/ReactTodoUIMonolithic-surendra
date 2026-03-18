@@ -84,3 +84,118 @@ sudo service nginx restart
 ```
 
 These configurations enable communication between the Frontend and Backend using Private IP on the Backend VM. Ensure that the IPs and ports are correctly set to match your environment.
+
+#######################################################################################
+# 🚀 React Todo UI CI/CD Pipeline
+
+This repository demonstrates an end-to-end CI/CD pipeline for a React application using Azure DevOps. It includes automated build, artifact publishing, and deployment to a Linux Virtual Machine via SSH.
+
+---
+
+## 📁 Project Structure
+
+```
+ReactTodoUIMonolithic-surendra/
+│
+├── azure-pipelines1.yml         # CI/CD pipeline definition
+├── src/                         # React application source code
+├── public/                      # Static assets
+├── package.json                 # Project dependencies
+├── README.md                    # Documentation
+```
+
+---
+
+## 📌 Overview
+
+The pipeline is divided into two main stages:
+
+1. **CI (Continuous Integration)** → Build the React application and publish artifacts  
+2. **CD (Continuous Deployment)** → Deploy the application to a Linux VM  
+
+---
+
+## ⚙️ Pipeline Configuration
+
+- **Pipeline Name:** ReactTodo Pipeline  
+- **Trigger:** Manual (`trigger: none`)  
+- **Agent Pool:** Simple  
+
+---
+
+## 🧱 CI Stage (Build)
+
+### 🔹 Steps:
+
+1. Install dependencies
+```bash
+npm install
+```
+
+2. Build application
+```bash
+npm run build
+```
+
+3. Publish artifacts
+- Output folder: `build/`
+- Artifact name: `Todo-reactUI-artifacts`
+
+---
+
+## 🚀 CD Stage (Deploy to VM)
+
+### 🔹 Steps:
+
+1. Download build artifacts from pipeline  
+2. Copy files to VM using SSH  
+3. Deploy files to web server directory  
+
+---
+
+## 🖥️ Deployment Flow
+
+```
+Code → Build → Artifact → VM → /var/www/html
+```
+
+---
+
+## 🔐 Tools & Tasks Used
+
+- PowerShell Task → Run build commands  
+- PublishPipelineArtifact → Store build output  
+- DownloadPipelineArtifact → Retrieve artifacts  
+- CopyFilesOverSSH → Transfer files to VM  
+- SSH Task → Execute deployment commands  
+
+---
+
+## 🎯 Use Case
+
+- Automating React application deployment  
+- Implementing CI/CD using Azure DevOps  
+- Deploying static frontend to Linux VM  
+- Demonstrating real-world DevOps workflow  
+
+---
+
+## 💡 Key Learnings
+
+- CI/CD pipeline using YAML  
+- Artifact-based deployment strategy  
+- Secure deployment using SSH  
+- Separation of CI and CD stages  
+
+---
+
+## 🚀 Future Enhancements
+
+- Enable automatic triggers (on code push)  
+- Add multi-environment support (Dev/Prod)  
+- Configure Nginx for production  
+- Implement rollback strategy  
+
+---
+
+🔥 *From code to deployment — complete DevOps pipeline in action*
